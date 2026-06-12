@@ -20,16 +20,37 @@
             
             /* Theme Colors for Blocks */
             --color-alca: #06b6d4; /* Cyan */
-            --color-alca-glow: rgba(6, 182, 212, 0.15);
-            --color-alca-hover: rgba(6, 182, 212, 0.25);
+            --color-alca-glow: rgba(6, 182, 212, 0.12);
             
             --color-fundo: #10b981; /* Emerald */
-            --color-fundo-glow: rgba(16, 185, 129, 0.15);
-            --color-fundo-hover: rgba(16, 185, 129, 0.25);
+            --color-fundo-glow: rgba(16, 185, 129, 0.12);
             
             --color-topo: #8b5cf6; /* Violet */
-            --color-topo-glow: rgba(139, 92, 246, 0.15);
-            --color-topo-hover: rgba(139, 92, 246, 0.25);
+            --color-topo-glow: rgba(139, 92, 246, 0.12);
+            
+            --color-travas: #f59e0b; /* Amber */
+            --color-travas-glow: rgba(245, 158, 11, 0.12);
+            
+            --color-fechamento: #f43f5e; /* Rose */
+            --color-fechamento-glow: rgba(244, 63, 94, 0.12);
+            
+            --color-valv-fundo: #0d9488; /* Teal */
+            --color-valv-fundo-glow: rgba(13, 148, 136, 0.12);
+            
+            --color-valv-topo: #4f46e5; /* Indigo */
+            --color-valv-topo-glow: rgba(79, 70, 229, 0.12);
+            
+            --color-saia: #d946ef; /* Fuchsia */
+            --color-saia-glow: rgba(217, 70, 239, 0.12);
+            
+            --color-valv-custom: #0ea5e9; /* Sky */
+            --color-valv-custom-glow: rgba(14, 165, 233, 0.12);
+            
+            --color-outras: #64748b; /* Slate */
+            --color-outras-glow: rgba(100, 116, 139, 0.12);
+            
+            --color-preparacao: #84cc16; /* Lime */
+            --color-preparacao-glow: rgba(132, 204, 22, 0.12);
         }
 
         * {
@@ -43,13 +64,13 @@
         body {
             background-color: var(--bg-base);
             background-image: 
-                radial-gradient(at 5% 5%, rgba(6, 182, 212, 0.12) 0px, transparent 40%),
-                radial-gradient(at 95% 95%, rgba(139, 92, 246, 0.12) 0px, transparent 40%),
-                radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.05) 0px, transparent 60%);
+                radial-gradient(at 5% 5%, rgba(6, 182, 212, 0.08) 0px, transparent 40%),
+                radial-gradient(at 95% 95%, rgba(139, 92, 246, 0.08) 0px, transparent 40%),
+                radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.03) 0px, transparent 60%);
             background-attachment: fixed;
             color: var(--text-main);
             min-height: 100vh;
-            padding: 2rem 1rem 8rem 1rem;
+            padding: 2rem 1.5rem 8rem 1.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -85,7 +106,7 @@
             justify-content: center;
             align-items: center;
             gap: 0.75rem;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             flex-wrap: wrap;
             animation: fadeIn 0.9s ease-out;
         }
@@ -129,22 +150,15 @@
             box-shadow: 0 6px 16px rgba(6, 182, 212, 0.35);
         }
 
-        /* Kanban Board Grid */
+        /* Kanban Board Grid (Wrap-around Grid) */
         .board {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             gap: 1.5rem;
             width: 100%;
-            max-width: 1280px;
+            max-width: 1600px;
             margin: 0 auto;
-            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @media (max-width: 1024px) {
-            .board {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
+            animation: slideUpNormal 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         /* Kanban Column / Block */
@@ -157,21 +171,10 @@
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
-            min-height: 500px;
+            min-height: 480px;
             transition: var(--transition);
             box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
             position: relative;
-        }
-
-        /* Specific border highlights based on theme */
-        .column-alca {
-            border-top: 4px solid var(--color-alca);
-        }
-        .column-fundo {
-            border-top: 4px solid var(--color-fundo);
-        }
-        .column-topo {
-            border-top: 4px solid var(--color-topo);
         }
 
         .column:hover {
@@ -190,16 +193,12 @@
         }
 
         .column-title {
-            font-size: 1.35rem;
+            font-size: 1.15rem;
             font-weight: 700;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-
-        .column-alca .column-title { color: var(--color-alca); }
-        .column-fundo .column-title { color: var(--color-fundo); }
-        .column-topo .column-title { color: var(--color-topo); }
 
         .item-count {
             font-size: 0.75rem;
@@ -214,7 +213,7 @@
         .items-list {
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
+            gap: 0.55rem;
             flex-grow: 1;
             margin-bottom: 1.5rem;
         }
@@ -224,7 +223,7 @@
             background: var(--bg-input);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
-            padding: 0.8rem 1rem;
+            padding: 0.75rem 0.9rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -267,12 +266,13 @@
             align-items: center;
             gap: 0.75rem;
             flex-grow: 1;
+            padding-right: 0.5rem;
         }
 
         /* Custom Checkbox Indicator */
         .custom-checkbox {
-            width: 1.15rem;
-            height: 1.15rem;
+            width: 1.1rem;
+            height: 1.1rem;
             border: 1.5px solid var(--text-muted);
             border-radius: 4px;
             display: flex;
@@ -284,11 +284,11 @@
         }
 
         .custom-checkbox svg {
-            width: 0.7rem;
-            height: 0.7rem;
+            width: 0.65rem;
+            height: 0.65rem;
             fill: none;
             stroke: #fff;
-            stroke-width: 3px;
+            stroke-width: 3.5px;
             stroke-linecap: round;
             stroke-linejoin: round;
             transform: scale(0);
@@ -296,17 +296,18 @@
         }
 
         .option-name {
-            font-size: 0.925rem;
+            font-size: 0.875rem;
             font-weight: 500;
-            color: #e2e8f0;
+            color: #cbd5e1;
             transition: var(--transition);
+            line-height: 1.3;
         }
 
         /* Value Badge */
         .option-badge {
             font-size: 0.8rem;
             font-weight: 600;
-            padding: 0.2rem 0.5rem;
+            padding: 0.2rem 0.45rem;
             border-radius: 6px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.03);
@@ -315,88 +316,12 @@
             font-family: monospace;
         }
 
-        /* Color Active States per Block type */
-        /* ALÇA ACTIVE STATE */
-        .column-alca .option-input:checked + .option-card {
-            background: var(--color-alca-glow);
-            border-color: rgba(6, 182, 212, 0.35);
-        }
-        .column-alca .option-input:checked + .option-card::before {
-            background: var(--color-alca);
-        }
-        .column-alca .option-input:checked + .option-card .custom-checkbox {
-            background: var(--color-alca);
-            border-color: var(--color-alca);
-        }
-        .column-alca .option-input:checked + .option-card .custom-checkbox svg {
-            transform: scale(1);
-        }
-        .column-alca .option-input:checked + .option-card .option-name {
-            color: #ffffff;
-            font-weight: 600;
-        }
-        .column-alca .option-input:checked + .option-card .option-badge {
-            background: rgba(6, 182, 212, 0.2);
-            color: var(--color-alca);
-            border-color: rgba(6, 182, 212, 0.1);
-        }
-
-        /* FUNDO ACTIVE STATE */
-        .column-fundo .option-input:checked + .option-card {
-            background: var(--color-fundo-glow);
-            border-color: rgba(16, 185, 129, 0.35);
-        }
-        .column-fundo .option-input:checked + .option-card::before {
-            background: var(--color-fundo);
-        }
-        .column-fundo .option-input:checked + .option-card .custom-checkbox {
-            background: var(--color-fundo);
-            border-color: var(--color-fundo);
-        }
-        .column-fundo .option-input:checked + .option-card .custom-checkbox svg {
-            transform: scale(1);
-        }
-        .column-fundo .option-input:checked + .option-card .option-name {
-            color: #ffffff;
-            font-weight: 600;
-        }
-        .column-fundo .option-input:checked + .option-card .option-badge {
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--color-fundo);
-            border-color: rgba(16, 185, 129, 0.1);
-        }
-
-        /* TOPO ACTIVE STATE */
-        .column-topo .option-input:checked + .option-card {
-            background: var(--color-topo-glow);
-            border-color: rgba(139, 92, 246, 0.35);
-        }
-        .column-topo .option-input:checked + .option-card::before {
-            background: var(--color-topo);
-        }
-        .column-topo .option-input:checked + .option-card .custom-checkbox {
-            background: var(--color-topo);
-            border-color: var(--color-topo);
-        }
-        .column-topo .option-input:checked + .option-card .custom-checkbox svg {
-            transform: scale(1);
-        }
-        .column-topo .option-input:checked + .option-card .option-name {
-            color: #ffffff;
-            font-weight: 600;
-        }
-        .column-topo .option-input:checked + .option-card .option-badge {
-            background: rgba(139, 92, 246, 0.2);
-            color: var(--color-topo);
-            border-color: rgba(139, 92, 246, 0.1);
-        }
-
         /* Column Totalizer Card (At bottom) */
         .totalizer-card {
             background: rgba(255, 255, 255, 0.02);
             border: 1px dashed rgba(255, 255, 255, 0.1);
             border-radius: var(--radius-md);
-            padding: 1rem;
+            padding: 0.85rem 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -405,7 +330,7 @@
         }
 
         .totalizer-label {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -413,20 +338,144 @@
         }
 
         .totalizer-value {
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: #fff;
             transition: color 0.3s;
         }
 
+        /* Active CSS bindings for all 11 themes */
+        /* ALÇA */
+        .column-alca { border-top: 4px solid var(--color-alca); }
+        .column-alca .column-title { color: var(--color-alca); }
         .column-alca .totalizer-card { border-color: rgba(6, 182, 212, 0.2); }
         .column-alca .totalizer-value { color: var(--color-alca); }
-        
+        .column-alca .option-input:checked + .option-card { background: var(--color-alca-glow); border-color: rgba(6, 182, 212, 0.35); }
+        .column-alca .option-input:checked + .option-card::before { background: var(--color-alca); }
+        .column-alca .option-input:checked + .option-card .custom-checkbox { background: var(--color-alca); border-color: var(--color-alca); }
+        .column-alca .option-input:checked + .option-card .custom-checkbox svg { transform: scale(1); }
+        .column-alca .option-input:checked + .option-card .option-name { color: #fff; font-weight: 600; }
+        .column-alca .option-input:checked + .option-card .option-badge { background: rgba(6, 182, 212, 0.2); color: var(--color-alca); border-color: rgba(6, 182, 212, 0.1); }
+
+        /* FUNDO */
+        .column-fundo { border-top: 4px solid var(--color-fundo); }
+        .column-fundo .column-title { color: var(--color-fundo); }
         .column-fundo .totalizer-card { border-color: rgba(16, 185, 129, 0.2); }
         .column-fundo .totalizer-value { color: var(--color-fundo); }
-        
+        .column-fundo .option-input:checked + .option-card { background: var(--color-fundo-glow); border-color: rgba(16, 185, 129, 0.35); }
+        .column-fundo .option-input:checked + .option-card::before { background: var(--color-fundo); }
+        .column-fundo .option-input:checked + .option-card .custom-checkbox { background: var(--color-fundo); border-color: var(--color-fundo); }
+        .column-fundo .option-input:checked + .option-card .custom-checkbox svg { transform: scale(1); }
+        .column-fundo .option-input:checked + .option-card .option-name { color: #fff; font-weight: 600; }
+        .column-fundo .option-input:checked + .option-card .option-badge { background: rgba(16, 185, 129, 0.2); color: var(--color-fundo); border-color: rgba(16, 185, 129, 0.1); }
+
+        /* TOPO */
+        .column-topo { border-top: 4px solid var(--color-topo); }
+        .column-topo .column-title { color: var(--color-topo); }
         .column-topo .totalizer-card { border-color: rgba(139, 92, 246, 0.2); }
         .column-topo .totalizer-value { color: var(--color-topo); }
+        .column-topo .option-input:checked + .option-card { background: var(--color-topo-glow); border-color: rgba(139, 92, 246, 0.35); }
+        .column-topo .option-input:checked + .option-card::before { background: var(--color-topo); }
+        .column-topo .option-input:checked + .option-card .custom-checkbox { background: var(--color-topo); border-color: var(--color-topo); }
+        .column-topo .option-input:checked + .option-card .custom-checkbox svg { transform: scale(1); }
+        .column-topo .option-input:checked + .option-card .option-name { color: #fff; font-weight: 600; }
+        .column-topo .option-input:checked + .option-card .option-badge { background: rgba(139, 92, 246, 0.2); color: var(--color-topo); border-color: rgba(139, 92, 246, 0.1); }
+
+        /* TRAVAS */
+        .column-travas { border-top: 4px solid var(--color-travas); }
+        .column-travas .column-title { color: var(--color-travas); }
+        .column-travas .totalizer-card { border-color: rgba(245, 158, 11, 0.2); }
+        .column-travas .totalizer-value { color: var(--color-travas); }
+        .column-travas .option-input:checked + .option-card { background: var(--color-travas-glow); border-color: rgba(245, 158, 11, 0.35); }
+        .column-travas .option-input:checked + .option-card::before { background: var(--color-travas); }
+        .column-travas .option-input:checked + .option-card .custom-checkbox { background: var(--color-travas); border-color: var(--color-travas); }
+        .column-travas .option-input:checked + .option-card .custom-checkbox svg { transform: scale(1); }
+        .column-travas .option-input:checked + .option-card .option-name { color: #fff; font-weight: 600; }
+        .column-travas .option-input:checked + .option-card .option-badge { background: rgba(245, 158, 11, 0.2); color: var(--color-travas); border-color: rgba(245, 158, 11, 0.1); }
+
+        /* FECHAMENTO */
+        .column-fechamento { border-top: 4px solid var(--color-fechamento); }
+        .column-fechamento .column-title { color: var(--color-fechamento); }
+        .column-fechamento .totalizer-card { border-color: rgba(244, 63, 94, 0.2); }
+        .column-fechamento .totalizer-value { color: var(--color-fechamento); }
+        .column-fechamento .option-input:checked + .option-card { background: var(--color-fechamento-glow); border-color: rgba(244, 63, 94, 0.35); }
+        .column-fechamento .option-input:checked + .option-card::before { background: var(--color-fechamento); }
+        .column-fechamento .option-input:checked + .option-card .custom-checkbox { background: var(--color-fechamento); border-color: var(--color-fechamento); }
+        .column-fechamento .option-input:checked + .option-card .custom-checkbox svg { transform: scale(1); }
+        .column-fechamento .option-input:checked + .option-card .option-name { color: #fff; font-weight: 600; }
+        .column-fechamento .option-input:checked + .option-card .option-badge { background: rgba(244, 63, 94, 0.2); color: var(--color-fechamento); border-color: rgba(244, 63, 94, 0.1); }
+
+        /* VÁLVULA FUNDO */
+        .column-valv-fundo { border-top: 4px solid var(--color-valv-fundo); }
+        .column-valv-fundo .column-title { color: var(--color-valv-fundo); }
+        .column-valv-fundo .totalizer-card { border-color: rgba(13, 148, 136, 0.2); }
+        .column-valv-fundo .totalizer-value { color: var(--color-valv-fundo); }
+        .column-valv-fundo .option-input:checked + .option-card { background: var(--color-valv-fundo-glow); border-color: rgba(13, 148, 136, 0.35); }
+        .column-valv-fundo .option-input:checked + .option-card::before { background: var(--color-valv-fundo); }
+        .column-valv-fundo .option-input:checked + .option-card .custom-checkbox { background: var(--color-valv-fundo); border-color: var(--color-valv-fundo); }
+        .column-valv-fundo .option-input:checked + .option-card .custom-checkbox svg { transform: scale(1); }
+        .column-valv-fundo .option-input:checked + .option-card .option-name { color: #fff; font-weight: 600; }
+        .column-valv-fundo .option-input:checked + .option-card .option-badge { background: rgba(13, 148, 136, 0.2); color: var(--color-valv-fundo); border-color: rgba(13, 148, 136, 0.1); }
+
+        /* VÁLVULA TOPO */
+        .column-valv-topo { border-top: 4px solid var(--color-valv-topo); }
+        .column-valv-topo .column-title { color: var(--color-valv-topo); }
+        .column-valv-topo .totalizer-card { border-color: rgba(79, 70, 229, 0.2); }
+        .column-valv-topo .totalizer-value { color: var(--color-valv-topo); }
+        .column-valv-topo .option-input:checked + .option-card { background: var(--color-valv-topo-glow); border-color: rgba(79, 70, 229, 0.35); }
+        .column-valv-topo .option-input:checked + .option-card::before { background: var(--color-valv-topo); }
+        .column-valv-topo .option-input:checked + .option-card .custom-checkbox { background: var(--color-valv-topo); border-color: var(--color-valv-topo); }
+        .column-valv-topo .option-input:checked + .option-card .custom-checkbox svg { transform: scale(1); }
+        .column-valv-topo .option-input:checked + .option-card .option-name { color: #fff; font-weight: 600; }
+        .column-valv-topo .option-input:checked + .option-card .option-badge { background: rgba(79, 70, 229, 0.2); color: var(--color-valv-topo); border-color: rgba(79, 70, 229, 0.1); }
+
+        /* SAIA */
+        .column-saia { border-top: 4px solid var(--color-saia); }
+        .column-saia .column-title { color: var(--color-saia); }
+        .column-saia .totalizer-card { border-color: rgba(217, 70, 239, 0.2); }
+        .column-saia .totalizer-value { color: var(--color-saia); }
+        .column-saia .option-input:checked + .option-card { background: var(--color-saia-glow); border-color: rgba(217, 70, 239, 0.35); }
+        .column-saia .option-input:checked + .option-card::before { background: var(--color-saia); }
+        .column-saia .option-input:checked + .option-card .custom-checkbox { background: var(--color-saia); border-color: var(--color-saia); }
+        .column-saia .option-input:checked + .option-card .custom-checkbox svg { transform: scale(1); }
+        .column-saia .option-input:checked + .option-card .option-name { color: #fff; font-weight: 600; }
+        .column-saia .option-input:checked + .option-card .option-badge { background: rgba(217, 70, 239, 0.2); color: var(--color-saia); border-color: rgba(217, 70, 239, 0.1); }
+
+        /* PERSONALIZAÇÃO DA VÁLVULA */
+        .column-valv-custom { border-top: 4px solid var(--color-valv-custom); }
+        .column-valv-custom .column-title { color: var(--color-valv-custom); }
+        .column-valv-custom .totalizer-card { border-color: rgba(14, 165, 233, 0.2); }
+        .column-valv-custom .totalizer-value { color: var(--color-valv-custom); }
+        .column-valv-custom .option-input:checked + .option-card { background: var(--color-valv-custom-glow); border-color: rgba(14, 165, 233, 0.35); }
+        .column-valv-custom .option-input:checked + .option-card::before { background: var(--color-valv-custom); }
+        .column-valv-custom .option-input:checked + .option-card .custom-checkbox { background: var(--color-valv-custom); border-color: var(--color-valv-custom); }
+        .column-valv-custom .option-input:checked + .option-card .custom-checkbox svg { transform: scale(1); }
+        .column-valv-custom .option-input:checked + .option-card .option-name { color: #fff; font-weight: 600; }
+        .column-valv-custom .option-input:checked + .option-card .option-badge { background: rgba(14, 165, 233, 0.2); color: var(--color-valv-custom); border-color: rgba(14, 165, 233, 0.1); }
+
+        /* DEMAIS OPERAÇÕES */
+        .column-outras { border-top: 4px solid var(--color-outras); }
+        .column-outras .column-title { color: var(--color-outras); }
+        .column-outras .totalizer-card { border-color: rgba(100, 116, 139, 0.2); }
+        .column-outras .totalizer-value { color: var(--color-outras); }
+        .column-outras .option-input:checked + .option-card { background: var(--color-outras-glow); border-color: rgba(100, 116, 139, 0.35); }
+        .column-outras .option-input:checked + .option-card::before { background: var(--color-outras); }
+        .column-outras .option-input:checked + .option-card .custom-checkbox { background: var(--color-outras); border-color: var(--color-outras); }
+        .column-outras .option-input:checked + .option-card .custom-checkbox svg { transform: scale(1); }
+        .column-outras .option-input:checked + .option-card .option-name { color: #fff; font-weight: 600; }
+        .column-outras .option-input:checked + .option-card .option-badge { background: rgba(100, 116, 139, 0.2); color: var(--color-outras); border-color: rgba(100, 116, 139, 0.1); }
+
+        /* PREPARAÇÃO */
+        .column-preparacao { border-top: 4px solid var(--color-preparacao); }
+        .column-preparacao .column-title { color: var(--color-preparacao); }
+        .column-preparacao .totalizer-card { border-color: rgba(132, 204, 22, 0.2); }
+        .column-preparacao .totalizer-value { color: var(--color-preparacao); }
+        .column-preparacao .option-input:checked + .option-card { background: var(--color-preparacao-glow); border-color: rgba(132, 204, 22, 0.35); }
+        .column-preparacao .option-input:checked + .option-card::before { background: var(--color-preparacao); }
+        .column-preparacao .option-input:checked + .option-card .custom-checkbox { background: var(--color-preparacao); border-color: var(--color-preparacao); }
+        .column-preparacao .option-input:checked + .option-card .custom-checkbox svg { transform: scale(1); }
+        .column-preparacao .option-input:checked + .option-card .option-name { color: #fff; font-weight: 600; }
+        .column-preparacao .option-input:checked + .option-card .option-badge { background: rgba(132, 204, 22, 0.2); color: var(--color-preparacao); border-color: rgba(132, 204, 22, 0.1); }
 
         /* Floating Summary Footer Panel */
         .summary-panel {
@@ -598,60 +647,9 @@
         </button>
     </div>
 
-    <main class="board">
-        <!-- ALÇA COLUMN -->
-        <section class="column column-alca" id="col-alca">
-            <div class="column-header">
-                <h2 class="column-title">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                    Alça
-                </h2>
-                <span class="item-count" id="count-alca">0/16</span>
-            </div>
-            <div class="items-list" id="list-alca">
-                <!-- Checkboxes will be populated by JS -->
-            </div>
-            <div class="totalizer-card">
-                <span class="totalizer-label">Totalizador</span>
-                <span class="totalizer-value" id="total-alca">0,00 min</span>
-            </div>
-        </section>
-
-        <!-- FUNDO COLUMN -->
-        <section class="column column-fundo" id="col-fundo">
-            <div class="column-header">
-                <h2 class="column-title">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="21" x2="21" y2="21"/></svg>
-                    Fundo
-                </h2>
-                <span class="item-count" id="count-fundo">0/14</span>
-            </div>
-            <div class="items-list" id="list-fundo">
-                <!-- Checkboxes will be populated by JS -->
-            </div>
-            <div class="totalizer-card">
-                <span class="totalizer-label">Totalizador</span>
-                <span class="totalizer-value" id="total-fundo">0,00 min</span>
-            </div>
-        </section>
-
-        <!-- TOPO COLUMN -->
-        <section class="column column-topo" id="col-topo">
-            <div class="column-header">
-                <h2 class="column-title">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 14.2 0L21 21Z"/></svg>
-                    Topo
-                </h2>
-                <span class="item-count" id="count-topo">0/16</span>
-            </div>
-            <div class="items-list" id="list-topo">
-                <!-- Checkboxes will be populated by JS -->
-            </div>
-            <div class="totalizer-card">
-                <span class="totalizer-label">Totalizador</span>
-                <span class="totalizer-value" id="total-topo">0,00 min</span>
-            </div>
-        </section>
+    <!-- MAIN BOARD CONTAINER -->
+    <main class="board" id="board-container">
+        <!-- Rendered dynamically by JS -->
     </main>
 
     <!-- FLOATING SUMMARY DASHBOARD -->
@@ -679,7 +677,22 @@
 
     <!-- Script Data & Logic -->
     <script>
-        // Options Data Definition
+        // Columns visual configuration
+        const columnsConfig = {
+            alca: { title: "Alça", icon: "M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6", colorClass: "alca" },
+            fundo: { title: "Fundo", icon: "M3 3h18v18H3z M3 21h18", colorClass: "fundo" },
+            topo: { title: "Topo", icon: "m3 21 1.9-5.7a8.5 8.5 0 1 1 14.2 0L21 21Z", colorClass: "topo" },
+            travas: { title: "Travas", icon: "M12 3v18 M3 12h18", colorClass: "travas" },
+            fechamento: { title: "Fechamento", icon: "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zm0-15v10", colorClass: "fechamento" },
+            valvFundo: { title: "Válvula Padrão Fundo", icon: "M19 14l-7 7-7-7 M12 3v18", colorClass: "valv-fundo" },
+            valvTopo: { title: "Válvula Padrão Topo", icon: "M5 10l7-7 7 7 M12 21V3", colorClass: "valv-topo" },
+            saia: { title: "Personalização Fechamento da Saia", icon: "M12 2L2 22h20L12 2z", colorClass: "saia" },
+            valvCustom: { title: "Personalização da Válvula", icon: "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z", colorClass: "valv-custom" },
+            outras: { title: "Demais Operações", icon: "M4 6h16M4 12h16M4 18h16", colorClass: "outras" },
+            preparacao: { title: "Preparação", icon: "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z", colorClass: "preparacao" }
+        };
+
+        // Complete Mapped Datasets
         const data = {
             alca: [
                 { id: "alca-op-padrao", name: "Alça (Operação Padrão)", time: 2.50, isDefault: true },
@@ -732,13 +745,131 @@
                 { id: "topo-envelope", name: "Envelope", time: 0.35, isDefault: false },
                 { id: "topo-saia", name: "Saia", time: -0.50, isDefault: false },
                 { id: "topo-liner-abas", name: "Com liner e com abas", time: 8.00, isDefault: false }
+            ],
+            travas: [
+                { id: "travas-op-padrao", name: "Travas (Operação padrão) - 4P ou circular", time: 3.50, isDefault: true },
+                { id: "travas-sem-pers", name: "Sem personalização", time: 0.00, isDefault: false },
+                { id: "travas-rede-4p", name: "Rede (4 Painéis)", time: 0.00, isDefault: false },
+                { id: "travas-laminado-4p", name: "Laminado (4 Painéis)", time: 0.00, isDefault: false },
+                { id: "travas-cadarco-4p", name: "Cadarço ou cordão (4 P)", time: 0.00, isDefault: false },
+                { id: "travas-1-vedante-4p", name: "1 Vedante (4 Painéis)", time: 3.00, isDefault: false },
+                { id: "travas-altura-17-4p", name: "Altura maior que 1,7 (4P)", time: 0.70, isDefault: false },
+                { id: "travas-rede-circ", name: "Rede (Circular)", time: 0.50, isDefault: false },
+                { id: "travas-laminado-circ", name: "Laminado (Circular)", time: 0.50, isDefault: false },
+                { id: "travas-cadarco-circ", name: "Cadarço ou cordão (Circular)", time: 0.00, isDefault: false },
+                { id: "travas-1-vedante-circ", name: "1 Vedante (Circular)", time: 0.00, isDefault: false },
+                { id: "travas-altura-17-circ", name: "Altura Maior que 1,7m (C)", time: 0.70, isDefault: false }
+            ],
+            fechamento: [
+                { id: "fechamento-ate-17-4p", name: "Até 1,7 m (4P)", time: 1.50, isDefault: false },
+                { id: "fechamento-laminado-4p", name: "Laminado (4P)", time: 0.25, isDefault: false },
+                { id: "fechamento-2-vedante-4p", name: "2 Vedante (4P)", time: 1.00, isDefault: false },
+                { id: "fechamento-altura-17-4p", name: "Altura maior que 1,7m (4P)", time: 0.25, isDefault: false },
+                { id: "fechamento-ate-17-8p", name: "Até 1,7m (8P)", time: 2.25, isDefault: false },
+                { id: "fechamento-laminado-8p", name: "Laminado (8P)", time: 0.25, isDefault: false },
+                { id: "fechamento-2-vedante-8p", name: "2 Vedante (8P)", time: 0.00, isDefault: false },
+                { id: "fechamento-altura-17-8p", name: "Altura Maior 1,7m (8P)", time: 0.25, isDefault: false },
+                { id: "fechamento-6-travas-8p", name: "6 Travas (8P)", time: 2.25, isDefault: false },
+                { id: "fechamento-ate-17-corpo-u", name: "Até 1,7M (Corpo U)", time: 2.00, isDefault: false },
+                { id: "fechamento-laminado-corpo-u", name: "Laminado (Corpo U)", time: 0.35, isDefault: false },
+                { id: "fechamento-forrado-corpo-u", name: "Forrado (Corpo U)", time: 2.00, isDefault: false },
+                { id: "fechamento-2-vedante-corpo-u", name: "2 Vedante (Corpo U)", time: 1.00, isDefault: false },
+                { id: "fechamento-altura-17-corpo-u", name: "Altura maior 1,7m (Corpo U)", time: 0.25, isDefault: false },
+                { id: "fechamento-forro", name: "Fechamento forro", time: 0.50, isDefault: false },
+                { id: "fechamento-forro-dobra", name: "Fechamento forro dobra", time: 0.65, isDefault: false }
+            ],
+            valvFundo: [
+                { id: "valvfundo-op-padrao", name: "Fundo (Operação Padrão)", time: 0.50, isDefault: true },
+                { id: "valvfundo-sem-pers", name: "Sem personalização", time: 0.00, isDefault: false },
+                { id: "valvfundo-menor-25", name: "Menor que 25cm", time: 0.25, isDefault: false },
+                { id: "valvfundo-maior-45", name: "Maior que 45cm", time: 0.15, isDefault: false },
+                { id: "valvfundo-encapado", name: "Encapado", time: 0.50, isDefault: false },
+                { id: "valvfundo-vedante", name: "Vedante", time: 0.20, isDefault: false },
+                { id: "valvfundo-feltro", name: "Feltro", time: 0.50, isDefault: false },
+                { id: "valvfundo-convencional", name: "Convencional", time: 0.00, isDefault: false },
+                { id: "valvfundo-corpo-u", name: "Corpo U", time: 1.00, isDefault: false },
+                { id: "valvfundo-forro-leve", name: "Forro Leve", time: 0.25, isDefault: false },
+                { id: "valvfundo-forro-pesado", name: "Forro Pesado", time: 0.15, isDefault: false },
+                { id: "valvfundo-petala", name: "Petala", time: 0.50, isDefault: false }
+            ],
+            valvTopo: [
+                { id: "valvtopo-op-padrao", name: "Topo (Operação Padrão)", time: 0.50, isDefault: true },
+                { id: "valvtopo-sem-pers", name: "Sem personalização", time: 0.00, isDefault: false },
+                { id: "valvtopo-menor-25", name: "Menor que 25cm", time: 0.25, isDefault: false },
+                { id: "valvtopo-maior-45", name: "Maior que 45cm", time: 0.15, isDefault: false },
+                { id: "valvtopo-encapado", name: "Encapado", time: 0.50, isDefault: false },
+                { id: "valvtopo-vedante", name: "Vedante", time: 0.20, isDefault: false },
+                { id: "valvtopo-feltro", name: "Feltro", time: 0.50, isDefault: false },
+                { id: "valvtopo-convencional", name: "Convencional", time: 0.00, isDefault: false },
+                { id: "valvtopo-corpo-u", name: "Corpo U", time: 1.00, isDefault: false },
+                { id: "valvtopo-forro-leve", name: "Forro leve", time: 0.25, isDefault: false },
+                { id: "valvtopo-forro-pesado", name: "Forro pesado", time: 0.15, isDefault: false },
+                { id: "valvtopo-petala", name: "Petala", time: 0.50, isDefault: false }
+            ],
+            saia: [
+                { id: "saia-op-padrao", name: "Fechamento da saia (Tempo Padrão)", time: 0.50, isDefault: true },
+                { id: "saia-sem-pers", name: "Sem personalização", time: 0.00, isDefault: false },
+                { id: "saia-sem-pers-adicional", name: "Sem personalização", time: 0.15, isDefault: false }
+            ],
+            valvCustom: [
+                { id: "valvcustom-op-padrao", name: "Fechamento de válvula (Laminado Plano)", time: 0.35, isDefault: true },
+                { id: "valvcustom-sem-pers", name: "Sem personalização", time: 0.00, isDefault: false },
+                { id: "valvcustom-dobra-dupla", name: "Dobra Dupla", time: 0.15, isDefault: false },
+                { id: "valvcustom-conica", name: "Cônica", time: 0.50, isDefault: false },
+                { id: "valvcustom-lacre", name: "Lacre", time: 0.10, isDefault: false },
+                { id: "valvcustom-convencional", name: "Convencional", time: 0.00, isDefault: false }
+            ],
+            outras: [
+                { id: "outras-corpo-u", name: "Corpo U", time: 2.00, isDefault: false },
+                { id: "outras-bainha-valv-sup", name: "Bainha Válvula Superior", time: 0.35, isDefault: false },
+                { id: "outras-bainha-valv-sup-dupla", name: "Bainha válvula Sup Dupla", time: 0.50, isDefault: false },
+                { id: "outras-bainha-valv-inf", name: "Bainha da Valv Inferior", time: 0.35, isDefault: false },
+                { id: "outras-bainha-valv-inf-dupla", name: "Bainha Valv Inf Dupla", time: 0.50, isDefault: false },
+                { id: "outras-costura-liner-enchimento", name: "Costura liner na valv de enchimento", time: 1.00, isDefault: false },
+                { id: "outras-costura-liner-descarga", name: "Costura de Liner na Valv de descarga", time: 1.00, isDefault: false },
+                { id: "outras-cadarco-valv-1", name: "Cadarço na Valv tub c/ 1 cadarco", time: 0.20, isDefault: false },
+                { id: "outras-cadarco-valv-2", name: "Cadarço na Valv tub c/ 2 cadarco", time: 0.30, isDefault: false },
+                { id: "outras-cadarco-valv-lacre", name: "Cadarço na Valv tub c/ lacre", time: 0.40, isDefault: false },
+                { id: "outras-cadarco-flap-maior", name: "Cadarço no Flap (Maior que 25 cm de diam)", time: 0.50, isDefault: false },
+                { id: "outras-cadarco-flap-menor", name: "Cadarço no Flap (Menor que 25 cm de diam)", time: 0.70, isDefault: false },
+                { id: "outras-topo-laminado-dobrado", name: "Topo Laminado dobrado 25 e 45 cm de diam", time: 0.50, isDefault: false },
+                { id: "outras-fundo-laminado-dobrado", name: "Fundo lam dobrado 25 a 45 cm Diam", time: 0.50, isDefault: false }
+            ],
+            preparacao: [
+                { id: "preparacao-casear-alcas", name: "Casear alças", time: 0.12, isDefault: false },
+                { id: "preparacao-reforco-vao", name: "Reforço de Vão", time: 0.13, isDefault: false },
+                { id: "preparacao-alca-estiva", name: "Alça Estiva", time: 0.60, isDefault: false },
+                { id: "preparacao-alcas-argoas", name: "Alças Argoas", time: 0.80, isDefault: false },
+                { id: "preparacao-cadarco-alca", name: "Cadarço na Alça (Argola Maggi)", time: 0.70, isDefault: false },
+                { id: "preparacao-presilhas-painel", name: "Presilhas no painel (Owens)", time: 1.05, isDefault: false },
+                { id: "preparacao-presilha-valvula", name: "Presilha na válvula", time: 0.92, isDefault: false },
+                { id: "preparacao-bainha-dupla", name: "Bainha Dupla", time: 0.54, isDefault: false },
+                { id: "preparacao-forro-feltro", name: "Preparação de forro com feltro", time: 3.10, isDefault: false },
+                { id: "preparacao-meia-alca", name: "Meia alça no painel", time: 0.37, isDefault: false },
+                { id: "preparacao-liner-colado", name: "Liner colado", time: 0.65, isDefault: false },
+                { id: "preparacao-amarrar-liner", name: "Amarrar Liner", time: 0.40, isDefault: false },
+                { id: "preparacao-amarracao", name: "Amarração", time: 0.50, isDefault: false },
+                { id: "preparacao-inspecao", name: "Inspeção", time: 1.00, isDefault: false },
+                { id: "preparacao-dobra-movimentacao", name: "Dobra e Movimentação", time: 1.00, isDefault: false },
+                { id: "preparacao-prensa", name: "Prensa", time: 1.00, isDefault: false },
+                { id: "preparacao-velcro-automatica", name: "Velcro máquina automática", time: 0.35, isDefault: false },
+                { id: "preparacao-lamina-braskem", name: "Lâmina maq. Automática braskem", time: 0.27, isDefault: false },
+                { id: "preparacao-lamina-videolar", name: "Lamina maq automática videolar", time: 0.69, isDefault: false },
+                { id: "preparacao-presilha-automatica", name: "Presilha máq automática", time: 0.48, isDefault: false },
+                { id: "preparacao-montagem-acessorios", name: "Montagem acessórios", time: 0.47, isDefault: false },
+                { id: "preparacao-bolacha-cadarco", name: "Bolacha e cadarço no fundo", time: 0.40, isDefault: false },
+                { id: "preparacao-porta-rafia", name: "Porta dcto de Ráfia", time: 1.00, isDefault: false },
+                { id: "preparacao-montagem-porta", name: "Montagem de porta de dcto de (pe + Rafia)", time: 0.20, isDefault: false },
+                { id: "preparacao-etiqueta-regata", name: "Etiqueta regata (unidade)", time: 0.02, isDefault: false },
+                { id: "preparacao-etiquetas", name: "Etiquetas (unidade)", time: 0.01, isDefault: false },
+                { id: "preparacao-costura-patch", name: "Costura do patch (Desfiamento - 4 Um)", time: 1.60, isDefault: false }
             ]
         };
 
-        // Load persisted checklist state or set all to true by default (as in user's image)
-        const storageKey = "bigbag-kanban-states-v1";
+        const storageKey = "bigbag-kanban-states-v2";
         let checklistStates = {};
 
+        // Load states from LocalStorage or initialize to ALL CHECKED (matching Excel sheet visuals)
         function loadStates() {
             const stored = localStorage.getItem(storageKey);
             if (stored) {
@@ -748,7 +879,6 @@
                     checklistStates = {};
                 }
             } else {
-                // Default is ALL CHECKED to match the spreadsheet sample perfectly
                 setAllCheckboxStates(true);
             }
         }
@@ -776,19 +906,46 @@
             showToast("Restaurado para as Operações Padrão!");
         }
 
-        // Render Column Option Cards
-        function renderColumns() {
-            Object.keys(data).forEach(columnKey => {
-                const listContainer = document.getElementById(`list-${columnKey}`);
-                listContainer.innerHTML = "";
+        // Dynamically build and render the 11 columns on the board
+        function renderBoard() {
+            const boardContainer = document.getElementById("board-container");
+            boardContainer.innerHTML = "";
 
-                data[columnKey].forEach(item => {
-                    const isChecked = checklistStates[item.id] !== false; // default to true if undefined
+            Object.keys(columnsConfig).forEach(columnKey => {
+                const config = columnsConfig[columnKey];
+                const columnItems = data[columnKey];
+                
+                const columnSection = document.createElement("section");
+                columnSection.className = `column column-${config.colorClass}`;
+                columnSection.id = `col-${columnKey}`;
+                
+                columnSection.innerHTML = `
+                    <div class="column-header">
+                        <h2 class="column-title">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="${config.icon}"/>
+                            </svg>
+                            ${config.title}
+                        </h2>
+                        <span class="item-count" id="count-${columnKey}">0/${columnItems.length}</span>
+                    </div>
+                    <div class="items-list" id="list-${columnKey}"></div>
+                    <div class="totalizer-card">
+                        <span class="totalizer-label">Totalizador</span>
+                        <span class="totalizer-value" id="total-${columnKey}">0,00 min</span>
+                    </div>
+                `;
+                
+                boardContainer.appendChild(columnSection);
+                
+                const listContainer = columnSection.querySelector(`#list-${columnKey}`);
+                
+                columnItems.forEach(item => {
+                    const isChecked = checklistStates[item.id] !== false;
                     
                     const label = document.createElement("label");
                     label.className = "option-wrapper";
                     
-                    // Format prefix +/-
                     const timeFormatted = item.time >= 0 
                         ? `+${item.time.toFixed(2).replace('.', ',')} min`
                         : `${item.time.toFixed(2).replace('.', ',')} min`;
@@ -819,12 +976,10 @@
             calculateTotals(columnKey);
         };
 
-        // Recalculate and update values
+        // Recalculate totals
         function calculateTotals(targetColumn = null) {
             let grandTotal = 0;
-            const columnsToCalculate = targetColumn ? [targetColumn] : Object.keys(data);
 
-            // Compute totals for all columns
             Object.keys(data).forEach(columnKey => {
                 let columnTotal = 0;
                 let activeCount = 0;
@@ -912,11 +1067,10 @@
         // Copy Text Summary
         document.getElementById("btn-copy").addEventListener("click", () => {
             let summaryText = `📋 **RESUMO DO TEMPO DE PRODUÇÃO - BIG BAGS**\n\n`;
-            
             let grandTotal = 0;
             
             Object.keys(data).forEach(columnKey => {
-                const colTitle = columnKey.charAt(0).toUpperCase() + columnKey.slice(1);
+                const colTitle = columnsConfig[columnKey].title;
                 let colTotal = 0;
                 let colItems = [];
 
@@ -934,10 +1088,10 @@
                 grandTotal += colTotal;
                 
                 if (colItems.length > 0) {
-                    summaryText += `🔹 **Bloco ${colTitle}** (Total: ${colTotal.toFixed(2).replace('.', ',')} min)\n`;
+                    summaryText += `🔹 **${colTitle}** (Total: ${colTotal.toFixed(2).replace('.', ',')} min)\n`;
                     summaryText += colItems.join("\n") + "\n\n";
                 } else {
-                    summaryText += `🔹 **Bloco ${colTitle}** (Vazio / 0,00 min)\n\n`;
+                    summaryText += `🔹 **${colTitle}** (Vazio / 0,00 min)\n\n`;
                 }
             });
 
@@ -971,7 +1125,7 @@
 
         // Full UI Sync
         function updateUI() {
-            renderColumns();
+            renderBoard();
             calculateTotals();
         }
 
