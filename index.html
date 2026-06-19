@@ -809,7 +809,7 @@
             saia: [
                 { id: "saia-op-padrao", name: "Fechamento da saia (Tempo Padrão)", time: 0.50, isDefault: true },
                 { id: "saia-sem-pers", name: "Sem personalização", time: 0.00, isDefault: false },
-                { id: "saia-sem-pers-adicional", name: "Sem personalização", time: 0.15, isDefault: false }
+                { id: "saia-sem-pers-adicional", name: "Com personalização", time: 0.15, isDefault: false }
             ],
             valvCustom: [
                 { id: "valvcustom-op-padrao", name: "Fechamento de válvula (Laminado Plano)", time: 0.35, isDefault: true },
@@ -848,10 +848,10 @@
                 { id: "preparacao-meia-alca", name: "Meia alça no painel", time: 0.37, isDefault: false },
                 { id: "preparacao-liner-colado", name: "Liner colado", time: 0.65, isDefault: false },
                 { id: "preparacao-amarrar-liner", name: "Amarrar Liner", time: 0.40, isDefault: false },
-                { id: "preparacao-amarracao", name: "Amarração", time: 0.50, isDefault: false },
-                { id: "preparacao-inspecao", name: "Inspeção", time: 1.00, isDefault: false },
-                { id: "preparacao-dobra-movimentacao", name: "Dobra e Movimentação", time: 1.00, isDefault: false },
-                { id: "preparacao-prensa", name: "Prensa", time: 1.00, isDefault: false },
+                { id: "preparacao-amarracao", name: "Amarração", time: 0.50, isDefault: true },
+                { id: "preparacao-inspecao", name: "Inspeção", time: 1.00, isDefault: true },
+                { id: "preparacao-dobra-movimentacao", name: "Dobra e Movimentação", time: 1.00, isDefault: true },
+                { id: "preparacao-prensa", name: "Prensa", time: 1.00, isDefault: true },
                 { id: "preparacao-velcro-automatica", name: "Velcro máquina automática", time: 0.35, isDefault: false },
                 { id: "preparacao-lamina-braskem", name: "Lâmina maq. Automática braskem", time: 0.27, isDefault: false },
                 { id: "preparacao-lamina-videolar", name: "Lamina maq automática videolar", time: 0.69, isDefault: false },
@@ -860,13 +860,13 @@
                 { id: "preparacao-bolacha-cadarco", name: "Bolacha e cadarço no fundo", time: 0.40, isDefault: false },
                 { id: "preparacao-porta-rafia", name: "Porta dcto de Ráfia", time: 1.00, isDefault: false },
                 { id: "preparacao-montagem-porta", name: "Montagem de porta de dcto de (pe + Rafia)", time: 0.20, isDefault: false },
-                { id: "preparacao-etiqueta-regata", name: "Etiqueta regata (unidade)", time: 0.02, isDefault: false },
-                { id: "preparacao-etiquetas", name: "Etiquetas (unidade)", time: 0.01, isDefault: false },
+                { id: "preparacao-etiqueta-regata", name: "Etiqueta regata (unidade)", time: 0.02, isDefault: true },
+                { id: "preparacao-etiquetas", name: "Etiquetas (unidade)", time: 0.01, isDefault: true },
                 { id: "preparacao-costura-patch", name: "Costura do patch (Desfiamento - 4 Um)", time: 1.60, isDefault: false }
             ]
         };
 
-        const storageKey = "bigbag-kanban-states-v2";
+        const storageKey = "bigbag-kanban-states-v3";
         let checklistStates = {};
 
         // Load states from LocalStorage or initialize to ALL CHECKED (matching Excel sheet visuals)
